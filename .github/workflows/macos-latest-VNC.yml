@@ -24,8 +24,8 @@ jobs:
           
     - name: Enable screen recording
       run: |
-        sudo chmod +x modify_screensharing.sh
-        # sudo ./modify_screensharing.sh
+        sudo chmod +x modify_screensharing-14.sh
+        sudo ./modify_screensharing-14.sh
 
     - name: MacOS System running...
       uses: mxschmitt/action-tmate@v2
