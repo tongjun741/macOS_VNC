@@ -1,0 +1,31 @@
+name: Mac-latest_VNC
+on: 
+  workflow_dispatch:
+jobs:
+  build:
+    name: Mac-latest_VNC
+    runs-on: macos-latest
+    
+    steps:     
+    
+    - uses: actions/checkout@v4 
+
+    - name: Enabling Remote Access
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+      run: |
+          chmod +x start.sh
+          bash start.sh "$NGROK_AUTH_TOKEN"
+          
+    - name: Log In Details To VNC Server
+      run: |
+         chmod +x login.sh
+         bash login.sh
+          
+    - name: Enable screen recording
+      run: |
+        sudo chmod +x modify_screensharing.sh
+        sudo ./modify_screensharing.sh
+
+    - name: MacOS System running...
+      uses: mxschmitt/action-tmate@v2
